@@ -1,0 +1,7 @@
+{
+  "modules": [
+    {"name": "Onboarding Service", "status": "active"},
+    {"name": "Monitoring Service", "status": "active"},
+    {"name": "Analytics Service", "status": "inactive"}
+  ]
+}

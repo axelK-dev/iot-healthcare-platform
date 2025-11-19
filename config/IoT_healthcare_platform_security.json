@@ -1,0 +1,6 @@
+{
+  "rules": [
+    {"name": "HIPAA Compliance", "status": "enabled"},
+    {"name": "GDPR Compliance", "status": "enabled"}
+  ]
+}

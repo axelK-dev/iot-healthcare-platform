@@ -1,0 +1,7 @@
+{
+  "onboarding_steps": [
+    {"description": "Collect patient info"},
+    {"description": "Verify device identity"},
+    {"description": "Activate monitoring"}
+  ]
+}
