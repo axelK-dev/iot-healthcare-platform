@@ -1,6 +1,14 @@
 {
   "rules": [
-    {"name": "HIPAA Compliance", "status": "enabled"},
-    {"name": "GDPR Compliance", "status": "enabled"}
+    {
+      "name": "HIPAA Compliance",
+      "status": "enabled",
+      "requirements": ["encryption", "audit_logging", "role_based_access"]
+    },
+    {
+      "name": "GDPR Compliance",
+      "status": "enabled",
+      "requirements": ["data_minimization", "consent_tracking"]
+    }
   ]
 }
