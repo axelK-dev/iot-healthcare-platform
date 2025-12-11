@@ -1,8 +1,4 @@
 {
-    "SECRET_KEY": "supersecretkey123",
-    "ROLES": [
-        "admin",
-        "provider",
-        "patient"
-    ]
+  "SECRET_KEY": "supersecretkey123",
+  "ROLES": ["admin", "provider", "patient"]
 }

@@ -1,7 +1,9 @@
 {
   "onboarding_steps": [
-    {"description": "Collect patient info"},
-    {"description": "Verify device identity"},
-    {"description": "Activate monitoring"}
+    { "step": "Authenticate (OAuth2/JWT)" },
+    { "step": "Present & capture consent (policy_version)" },
+    { "step": "Collect minimal patient fields (data_minimization)" },
+    { "step": "Verify device identity (voucher + trust_chain)" },
+    { "step": "Activate monitoring (RBAC-enforced)" }
   ]
 }

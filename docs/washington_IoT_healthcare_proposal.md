@@ -279,4 +279,4 @@ The IoT Healthcare Platform prototype is now operational with:
 
 🔥 **Tip:** 
 
-Position this as a **modular platform**: wellness + IoT + compliance + open APIs: so stakeholders see it as future-proof and interoperable.
+This is a **modular platform**: wellness + IoT + compliance + open APIs: for stakeholders to see it as future-proof and interoperable.

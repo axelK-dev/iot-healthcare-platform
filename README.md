@@ -1,13 +1,13 @@
+
 # IoT Healthcare Platform: Scalable, Secure, Patient-Centric
+![Banner](/images/architecture.png)
 
-![Banner](images/architecture.png)
-
-## 🚀 Overview
+##  Overview
 A modular IoT healthcare platform designed for **home-care monitoring**, **wellness integration**, and **pandemic-ready scalability**. Built with **FastAPI**, **edge-cloud orchestration**, and **HIPAA-compliant workflows**, this solution empowers hospitals, non-profits, and caregivers with cost-effective, secure, and patient-focused tools.
 
 ---
 
-## ✅ Key Features
+##  Key Features
 - **Modular Architecture**: Plug-and-play microservices for onboarding, monitoring, analytics, and compliance.
 - **Automated Device Onboarding**: Secure Device Onboarding (SDO) with voucher-based late binding and identity federation.
 - **Edge + Cloud Integration**: Fog-based IoT for low latency and cloud scalability.
@@ -17,7 +17,7 @@ A modular IoT healthcare platform designed for **home-care monitoring**, **welln
 
 ---
 
-## 🛠 Tech Stack
+##  Tech Stack
 - **Backend**: Python (FastAPI)
 - **Database**: SQLite
 - **Containerization**: Docker + Kubernetes (future roadmap)
@@ -28,80 +28,89 @@ A modular IoT healthcare platform designed for **home-care monitoring**, **welln
 
 ---
 
-## 📦 Modules
-- **Onboarding Service**: Automated IoT provisioning scripts.
-- **Monitoring Service**: Real-time patient data from edge devices.
-- **Analytics Service**: Predictive health insights.
-- **Compliance Service**: Built-in HIPAA/GDPR validation.
+##  Modules
+- **Onboarding Service**: Automated IoT provisioning (voucher-based) and trust-chain verification.
+- **Monitoring Service**: Real-time sensor data via WebSocket (`/monitor`) and health metrics streaming.
+- **Analytics Service**: Predictive health insights and anomaly detection (future roadmap).
+- **Compliance Service**: Built-in HIPAA/GDPR validation (`/compliance`) and consent capture (`/consent`).
 
 ---
 
-## 🔗 APIs & Integrations
-- Open APIs for hospitals, insurers, and non-profits.
-- Community-driven extensions for collaboration.
+##  APIs & Integrations
+- **Open APIs** for hospitals, insurers, and non-profits.
+- **Community-driven extensions** for collaboration and third-party integrations.
 
----
+##  Quick Start
 
-## 📚 Documentation
-- [Swagger UI](http://127.0.0.1:8000/docs) - Interactive API testing
-- [Redoc](http://127.0.0.1:8000/redoc) - Clean API documentation
-
----
-
-## ⚡ Quick Start
 ```bash
 # Clone the repo
 git clone https://github.com/your-org/iot-healthcare-platform.git
-
-# Navigate to project
 cd iot-healthcare-platform
+
+# Create and activate virtual environment
+python -m venv .venv
+# Windows PowerShell:
+.\.venv\Scripts\Activate.ps1
+# macOS/Linux:
+# source .venv/bin/activate
 
 # Install dependencies
 pip install -r requirements.txt
 
-# Start the API server (from project root)
-python -m uvicorn src.IoT_healthcare_platform:app --host 127.0.0.1 --port 8000 --reload
+# Generate RSA keys for JWT (if not present)
+python scripts/generate_jwt_keys.py
 
-# Access the dashboard
-http://127.0.0.1:8000/docs   # Swagger UI
-http://127.0.0.1:8000/redoc  # Alternative API docs
+# Start the API server (import string for reload)
+uvicorn src.IoT_healthcare_platform:app --host 127.0.0.1 --port 8000 --reload
 ```
 
----
-
-## 🖥 For Non-Technical Users
-1. Install Python 3.11
-2. Download this repository
-3. Open PowerShell and run:
-   ```powershell
-   cd path\to\iot-healthcare-platform
-   pip install -r requirements.txt
-   python -m uvicorn src.IoT_healthcare_platform:app --reload
-   ```
-4. Open your browser:
-   - Dashboard: http://127.0.0.1:8000/docs
-   - Health check: http://127.0.0.1:8000/health
+### Access the API
+- **Swagger UI**: `http://127.0.0.1:8000/docs`
+- **Health Check**: `http://127.0.0.1:8000/health`
 
 ---
 
-## ✅ Config Requirements
+##  Config Requirements
 Ensure the `config/` folder contains:
-- `config.json` with `SECRET_KEY` and `ROLES`
-- `IoT_healthcare_platform_architecture.json`
 - `IoT_healthcare_platform_security.json`
 - `IoT_healthcare_platform_workflows.json`
+- `IoT_healthcare_platform_architecture.json`
 
 ---
 
-## ✅ Logs & Database
-- Logs: `logs/iot_healthcare_api.log`
-- Database: `data/iot_devices.db`
+##  Logs & Database
+- **Logs**: `logs/audit.log` (+ tamper-evident `logs/audit.chain`)
+- **Database**: `data/iot_devices.db`
 
 ---
 
-## 🌱 Why This Project?
-Unlike existing GitHub projects, this platform:
-- **Empowers Non-Profits** with cost-effective deployment models.
-- **Adds Cognitive Wellness** for tinnitus and pain management.
-- **Includes Visual Workflow Builder** for non-technical staff.
-- **Provides Pre-Built Scripts** for IoT setup and compliance checks.
+##  Security Posture
+- RS256 JWT with RSA key pair (asymmetric signing)
+- HTTPS enforcement + HSTS
+- RBAC with deny-by-default
+- Tamper-evident audit logs
+- HIPAA/GDPR workflow validation
+
+---
+
+##  Changelog
+### [v3.1.0] – 2025-12-10
+- Migrated API spec from **OAS 2.0** to **OAS 3.1**
+- Enforced RS256 JWT with RSA key pair
+- Added HTTPS middleware with HSTS and security headers
+- Implemented RBAC with deny-by-default policy
+- Tamper-evident audit logging
+- Consent capture endpoint for GDPR compliance
+
+---
+##  Roadmap
+-  Key rotation & hardware-backed trust (HSM integration)
+-  Multi-cloud deployment templates (AWS/Azure/GCP)
+-  Advanced analytics with predictive health models
+-  mTLS for device-to-cloud communication
+-  Visual workflow builder for non-technical staff
+-  Policy-as-code for automated compliance (OPA/Gatekeeper)
+-  JWT key rotation with multi-issuer verification support
+-  Device attestation (TPM/TEE) and supply-chain trust validation
+-  Mobile-first dashboards for caregivers and patients
+-  Privacy-preserving data sharing (differential privacy / federated learning)

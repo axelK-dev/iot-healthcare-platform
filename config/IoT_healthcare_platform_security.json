@@ -10,5 +10,62 @@
       "status": "enabled",
       "requirements": ["data_minimization", "consent_tracking"]
     }
-  ]
+  ],
+  "jwt": {
+    "algorithm": "RS256",
+    "issuer": "com.example.iothealth",
+    "audience": "iothealth_clients",
+    "access_token_ttl_minutes": 30,
+    "require_claims": ["sub", "role", "iat", "exp", "iss", "aud"]
+  },
+  "transport": {
+    "require_https": false,
+    "hsts": true
+  },               
+  "rbac": {
+    "roles": {
+      "admin": [
+        "devices:read",
+        "devices:write",
+        "patients:read",
+        "patients:write",
+        "consent:read",
+        "consent:write",
+        "monitoring:start",
+        "monitoring:stop"
+      ],
+      "provider": [
+        "patients:read",
+        "patients:write",
+        "devices:read",
+        "consent:read",
+        "monitoring:start",
+        "monitoring:stop"
+      ],
+      "patient": ["patients:read_self", "consent:read_self"]
+    },
+    "deny_by_default": true
+  },
+  "audit": {
+    "enabled": true,
+    "events": [
+      "login",
+      "consent.accept",
+      "consent.revoke",
+      "device.onboard",
+      "device.attest",
+      "monitor.start",
+      "monitor.stop",
+      "phi.read",
+      "phi.write"
+    ],
+    "sink": "file",
+    "file": "logs/audit.log",
+    "format": "json"
+  },
+  "gdpr": {
+    "data_minimization": true,
+    "retention_days": 30,
+    "right_to_erasure_enabled": true
+  }
 }
